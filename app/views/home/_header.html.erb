@@ -6,8 +6,12 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="<%= home_about_path %>">About</a>
+      <% if user_signed_in? %>
+       <li class="nav-item">
+        <%= link_to "SignOut", destroy_user_session_path, method: :delete, class:"nav-link" %>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="<%= edit_user_registration_path %>">Edit Profile</a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="<%= new_friend_path %>">Add Friend</a>
@@ -15,7 +19,19 @@
         <li class="nav-item">
         <a class="nav-link" href="<%= friends_path %>">Friends</a>
       </li>
+      <% else %>
+       <li class="nav-item">
+        <a class="nav-link" href="<%= new_user_registration_path %>">SignUp</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="<%= new_user_session_path %>">SignIn</a>
+      </li>
+      <% end %>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= home_about_path %>">About</a>
+      </li>
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
