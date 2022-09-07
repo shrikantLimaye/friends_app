@@ -1,29 +1,23 @@
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Twitter</th>
-      <th>User ID</th>
-      <th colspan="3"></th>
+    <tr scope="row">
+      <th colspan="2">Full name</th>
+      <th colspan="2">Email</th>
+      <th colspan="2">Phone</th>
+      <th colspan="2">Twitter</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @friends.each do |friend| %>
       <% if friend.user == current_user %>
-        <tr>
-          <td><%= friend.first_name %></td>
-          <td><%= friend.last_name %></td>
-          <td><%= friend.email %></td>
-          <td><%= friend.phone %></td>
-          <td><%= friend.twitter %></td>
-          <td><%= friend.user_id %></td>
-          <td><%= link_to 'Show', friend %></td>
-          <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
-          <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <tr scope="row">
+          <td colspan="2"><%= link_to friend.full_name, friend %></td>
+          <td colspan="2"><%= friend.email %></td>
+          <td colspan="2"><%= friend.phone %></td>
+          <td colspan="2"><%= friend.twitter %></td>
+          <td colspan="1"><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     <% end %>
